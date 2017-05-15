@@ -9,3 +9,6 @@ static char *checkKey(char *key);
 
 // convert event code to corresponding char
 static char *pressedKey(int eventcode);
+
+// to automatically find keyboard device file
+static char *getKeyboardDevicePath();

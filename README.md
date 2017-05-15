@@ -10,21 +10,17 @@ Install it by typing these commands
 
 `$ cd keylogger`
 
-`$ make install`
-
-The make command will require `sudo` access
-
-> Note : Before the make command you need to find your keyboard device file and change the value of DEVICEFILE in define.h
+`$ sudo make install`
 
 ## Uninstall
 
-To uninstall it type `make uninstall`
+To uninstall it type `sudo make uninstall`
 
-To remove the log file type `make remove`
+To remove the log file type `sudo make remove`
 
 ## How to Use
 
-You can run it by typing `keylogger`
+You can run it by typing `sudo keylogger`
 
 The log file will be located at `/var/log/keystroke.log`
 
