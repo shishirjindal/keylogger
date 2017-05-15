@@ -65,7 +65,7 @@ int main(){
 	}
 
 	// log file
-	FILE *lf = fopen("/var/log/keystroke.log", "ab");
+	FILE *lf = fopen(LOGFILE, "ab");
 
 	// log file check
 	if(lf == NULL){
@@ -78,7 +78,7 @@ int main(){
 	setbuf(lf, NULL);
 
 	// device file
-	int fp = open("/dev/input/event4", O_RDONLY);
+	int fp = open(DEVICEFILE, O_RDONLY);
 
 	// device check
 	if(fp == -1){

