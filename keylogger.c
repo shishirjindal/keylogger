@@ -7,6 +7,12 @@
 #include "define.h"
 
 
+// initializations
+input_event event;
+int shift = 0;
+int caps = 0;				// assuming capslock to be off
+
+
 // checking for shift key
 static int isShiftPressed(int eventcode){
 	if((eventcode == LEFTSHIFT) || (eventcode == RIGHTSHIFT)){
