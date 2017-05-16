@@ -17,6 +17,12 @@ uninstall:
 	@rm $(SERVICEDIR)/$(SERVICE)
 	@rm $(INSTALLDIR)/$(EXECUTABLE)
 
+start:
+	@systemctl start $(SERVICE)
+
+stop:
+	@systemctl stop $(SERVICE)
+
 enable:
 	@systemctl enable $(SERVICE)
 
