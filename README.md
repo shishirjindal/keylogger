@@ -20,7 +20,15 @@ To remove the log file type `sudo make remove`
 
 ## How to Use
 
-After installation you can start the keylogger by typing `sudo keylogger`. If you want to start the keylogger at boot time then type `sudo make enable` and to disable startup feature type `sudo make disable`
+After installation you can start the keylogger(for this session only) by typing either
+
+`sudo keylogger`  or by 
+
+`sudo make start`
+
+To stop the service for this session type `sudo make stop`
+
+If you want to start the keylogger at boot time then type `sudo make enable` and to disable startup feature type `sudo make disable`
 
 The log file will be located at `/var/log/keystroke.log`
 
