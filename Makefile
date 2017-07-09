@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-fPIE -fstack-protector-all -D_FORTIFY_SOURCE=2 
+CFLAGS=-w -std=c99 -fPIE -fstack-protector-all -D_FORTIFY_SOURCE=2 
 LDFLAGS=-Wl,-z,relro,-z,now
 SOURCES=keylogger.c
 SERVICE=keylogger.service
