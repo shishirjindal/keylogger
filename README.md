@@ -1,6 +1,6 @@
-# Keylogger
+# Keylogger [![Build Status](https://travis-ci.org/shishirjindal/keylogger.svg?branch=master)](https://travis-ci.org/shishirjindal/keylogger)
 
-A simple C based Keylogger for linux based systems. This will record all the keystrokes the user types and saves it in a log file.
+A simple C based Keylogger for linux based systems. This will record all the keystrokes the user types and saves it in a log file. You can read the technical details [here](https://gist.github.com/shishirjindal/b59b0caf3595938901bed6200618d2e6)
 
 ## Installation
 
