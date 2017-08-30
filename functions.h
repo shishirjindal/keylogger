@@ -12,3 +12,6 @@ static char *pressedKey(int eventcode);
 
 // to automatically find keyboard device file
 static char *getKeyboardDevicePath();
+
+// get time
+static char *getTimestamp();

