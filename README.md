@@ -6,29 +6,51 @@ A simple C based Keylogger for linux based systems. This will record all the key
 
 Install it by typing these commands
 
-`$ git clone https://github.com/shishirjindal/keylogger`
+```bash
+$ git clone https://github.com/shishirjindal/keylogger
+$ cd keylogger
+$ sudo make install
+```
 
-`$ cd keylogger`
-
-`$ sudo make install`
+## Features
+- [x] StartUp Feature
+- [x] Saves Timestamp
+- [ ] Email log file
 
 ## Uninstall
 
-To uninstall it type `sudo make uninstall`
+To uninstall
+```bash
+$ sudo make uninstall
+```
 
-To remove the log file type `sudo make remove`
+To remove the log file
+```bash
+$ sudo make remove
+```
 
 ## How to Use
 
-After installation you can start the keylogger(for this session only) by typing either
+Run the keylogger
+```bash
+$ sudo make start
+```
 
-`sudo keylogger`  or by 
+Stop the keylogger
+```bash
+$ sudo make stop
+```
 
-`sudo make start`
+Run at startup
+```bash
+$ sudo make enable
+```
 
-To stop the service for this session type `sudo make stop`
+Disable startup feature
+```bash
+$ sudo make disable
+```
 
-If you want to start the keylogger at boot time then type `sudo make enable` and to disable startup feature type `sudo make disable`
 
 The log file will be located at `/var/log/keystroke.log`
 
